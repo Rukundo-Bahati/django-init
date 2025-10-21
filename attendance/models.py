@@ -25,7 +25,6 @@ class Attendance(models.Model):
     def __str__(self):
         return f"{self.farmer.name} - {self.date} - {'Present' if self.is_present else 'Absent'}"
 
-
     class Meta:
-        db_table = 'attendance'
+        db_table = 'attendance_attendance'
         ordering = ['-date']

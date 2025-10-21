@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .present {
+            color: green;
+            font-weight: bold;
+        }
+
+        .absent {
+            color: red;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            margin-bottom: 20px;
+        }
+
+        .nav-links a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Attendance Records</h1>
+
+    <div class="nav-links">
+        <a href="{% url 'mark_attendance' %}">Mark Attendance</a>
+        <a href="{% url 'add_farmer' %}">Add Farmer</a>
+    </div>
+
+    {% if records %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Farmer Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.date }}</td>
+                <td>{{ record.farmer.name }}</td>
+                <td class="{% if record.is_present %}present{% else %}absent{% endif %}">
+                    {% if record.is_present %}Present{% else %}Absent{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No attendance records found.</p>
+    {% endif %}
+</body>
+
+</html>
