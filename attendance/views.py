@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import JsonResponse
 from .forms import FarmerForm
 from django.utils import timezone
 from .models import Farmer,Attendance
@@ -10,7 +11,7 @@ def add_farmer(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Farmer saved successfully.')
-            return redirect('add_farmer')
+            return redirect('mark_attendance')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -37,3 +38,11 @@ def mark_attendance(request):
 def attendance_list(request):
     records = Attendance.objects.select_related('farmer').order_by('-date')
     return render(request,'attendance/attendance_list.html',{'records':records})    
+
+
+def farmer_list_json(request):
+    farmers = Farmer.objects.all().values(
+        'id', 'name', 'phone_number', 'email', 'farm', 
+        'gender', 'contract_type'
+    )
+    return JsonResponse(list(farmers), safe=False)    

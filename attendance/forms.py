@@ -34,6 +34,13 @@ class FarmerForm(forms.ModelForm):
                 'placeholder': 'Farm',
                 'id': 'farm',
             }),
+            'gender': forms.RadioSelect(attrs={
+                'class': 'form-check-input',
+            }),
+            'contract_type': forms.Select(attrs={
+                'class': 'form-control',
+                'id': 'contract_type',
+            }),
         }
 
 # class AttendanceForm(forms.ModelForm):

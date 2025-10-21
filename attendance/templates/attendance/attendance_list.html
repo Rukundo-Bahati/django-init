@@ -65,6 +65,8 @@
             <tr>
                 <th>Date</th>
                 <th>Farmer Name</th>
+                <th>Gender</th>
+                <th>Contract Type</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -73,6 +75,8 @@
             <tr>
                 <td>{{ record.date }}</td>
                 <td>{{ record.farmer.name }}</td>
+                <td>{{ record.farmer.get_gender_display }}</td>
+                <td>{{ record.farmer.get_contract_type_display }}</td>
                 <td class="{% if record.is_present %}present{% else %}absent{% endif %}">
                     {% if record.is_present %}Present{% else %}Absent{% endif %}
                 </td>

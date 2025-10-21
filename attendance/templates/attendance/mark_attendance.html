@@ -24,6 +24,8 @@
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Farm</th>
+                        <th>Gender</th>
+                        <th>Contract Type</th>
                         <th>Present</th>
                     </tr>
                 </thead>
@@ -34,6 +36,8 @@
                         <td>{{ farmer.phone_number }}</td>
                         <td>{{ farmer.email }}</td>
                         <td>{{ farmer.farm }}</td>
+                        <td>{{ farmer.get_gender_display }}</td>
+                        <td>{{ farmer.get_contract_type_display }}</td>
                         <td><input type="checkbox" name="farmer_{{ farmer.id }}" id=""></td>
                     </tr>
                     {% endfor %}
